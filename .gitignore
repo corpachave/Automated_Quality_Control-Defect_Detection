@@ -1,0 +1,10 @@
+
+# Datasets
+data/
+raw_data/
+
+# Virtual environment
+venv/
+.venv/
+
+
