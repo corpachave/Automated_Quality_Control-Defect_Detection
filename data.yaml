@@ -1,0 +1,9 @@
+path: data/detection
+
+train: images/train
+val: images/val
+
+nc: 6   # number of classes
+
+names:
+  ["open", "short", "mouse_bite", "spur", "pinhole", "spurious"]
