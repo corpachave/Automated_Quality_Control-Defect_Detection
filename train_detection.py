@@ -1,6 +1,6 @@
 import os
 import argparse
-from ultralytics import YOLO
+from ultralytics import YOLO # type: ignore
 
 # CONFIG
 
