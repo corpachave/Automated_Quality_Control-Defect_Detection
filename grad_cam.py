@@ -1,26 +1,23 @@
 import numpy as np
 import cv2
-import tensorflow as tf
-from tensorflow.keras.models import load_model
+import tensorflow as tf # type: ignore
+from tensorflow.keras.models import load_model # type: ignore
 import matplotlib.pyplot as plt
 
-# =========================
+
 # CONFIG
-# =========================
 
 MODEL_PATH = "visionspec_qc_model.keras"
-IMG_PATH = r"data\classification\defect\00041000_test.jpg"
+IMG_PATH = r"data\\classification\\defect\\00041003_test.jpg"
 IMG_SIZE = (224, 224)
 
-# =========================
+
 # LOAD MODEL
-# =========================
 
 model = load_model(MODEL_PATH)
 
-# =========================
+
 # FIND BASE MODEL (MobileNetV2)
-# =========================
 
 base_model = None
 for layer in model.layers:
@@ -33,9 +30,8 @@ if base_model is None:
 
 print("Base model:", base_model.name)
 
-# =========================
+
 # PREPROCESS IMAGE
-# =========================
 
 def preprocess_image(img_path):
     img = cv2.imread(img_path)
@@ -46,9 +42,8 @@ def preprocess_image(img_path):
     img_array = np.expand_dims(img_array, axis=0)
     return img, img_array
 
-# =========================
+
 # LAST CONV LAYER
-# =========================
 
 last_conv_layer_name = "Conv_1"
 print("Using Conv Layer:", last_conv_layer_name)
@@ -58,16 +53,16 @@ def make_gradcam_heatmap(img_array, model, base_model, last_conv_layer_name):
     # Ensure model is built
     _ = model(img_array)
 
-    # 🔥 Get last conv layer from base model
+    # Get last conv layer from base model
     last_conv_layer = base_model.get_layer(last_conv_layer_name)
 
-    # 🔥 Create a model that maps input → conv output
+    # Create a model that maps input -> conv output
     conv_model = tf.keras.models.Model(
         inputs=base_model.input,
         outputs=last_conv_layer.output
     )
 
-    # 🔥 Create classifier model (conv output → final prediction)
+    # Create classifier model (conv output -> final prediction)
     classifier_input = tf.keras.Input(shape=last_conv_layer.output.shape[1:])
     x = classifier_input
 
@@ -77,9 +72,8 @@ def make_gradcam_heatmap(img_array, model, base_model, last_conv_layer_name):
 
     classifier_model = tf.keras.Model(classifier_input, x)
 
-    # =========================
+    
     # GRAD-CAM FUNCTION
-    # =========================
 
     with tf.GradientTape() as tape:
         conv_outputs = conv_model(img_array)
@@ -99,9 +93,8 @@ def make_gradcam_heatmap(img_array, model, base_model, last_conv_layer_name):
     heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
     return heatmap.numpy()
 
-# =========================
+
 # OVERLAY FUNCTION
-# =========================
 
 def overlay_heatmap(original_img, heatmap):
     heatmap = cv2.resize(heatmap, (original_img.shape[1], original_img.shape[0]))
@@ -110,9 +103,8 @@ def overlay_heatmap(original_img, heatmap):
     overlay = cv2.addWeighted(original_img, 0.6, heatmap, 0.4, 0)
     return overlay
 
-# =========================
+
 # RUN
-# =========================
 
 original_img, img_array = preprocess_image(IMG_PATH)
 
@@ -122,9 +114,8 @@ heatmap = make_gradcam_heatmap(
 
 overlay = overlay_heatmap(original_img, heatmap)
 
-# =========================
+
 # DISPLAY
-# =========================
 
 plt.figure(figsize=(10, 4))
 
