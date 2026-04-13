@@ -12,13 +12,13 @@ BATCH_SIZE = 32
 
 train_datagen = ImageDataGenerator(
     rescale=1./255,
-    rotation_range=20,
+    rotation_range=10,
     zoom_range=0.1,
     width_shift_range=0.1,
     height_shift_range=0.1,
     horizontal_flip=True,
     vertical_flip=True,
-    brightness_range=[0.6, 1.4],
+    brightness_range=[0.9, 1.1],
     fill_mode='nearest'
 )
 
