@@ -1,10 +1,10 @@
 import os
 import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.applications import MobileNetV2
-from tensorflow.keras import layers, models
-from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+import tensorflow as tf # type: ignore
+from tensorflow.keras.preprocessing.image import ImageDataGenerator # type: ignore
+from tensorflow.keras.applications import MobileNetV2 # type: ignore
+from tensorflow.keras import layers, models # type: ignore
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau # type: ignore
 
 # CONFIG
 
@@ -45,7 +45,7 @@ val_generator = train_datagen.flow_from_directory(
 
 print("\nClass Indices:", train_generator.class_indices)
 
-# CALLBACKS (VERY IMPORTANT)
+# CALLBACKS (improve training stability and performance)
 
 early_stop = EarlyStopping(
     monitor='val_loss',
