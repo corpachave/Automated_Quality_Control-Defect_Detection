@@ -2,7 +2,7 @@
 
 A deep learning-based quality control system for automated PCB (Printed Circuit Board) defect detection. The system uses a two-stage approach: first classifying boards as PASS or DEFECT, then localizing specific defect types using object detection.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Architecture](#architecture)
@@ -43,7 +43,7 @@ This project implements a computer vision system for automated PCB inspection in
 ┌─────────────────────────────────────────────────────────────┐
 │                     VisionSpec QC System                    │
 ├─────────────────────────────────────────────────────────────┤
-│  ┌──────────────┐     ┌──────────────┐                     │
+│  ┌──────────────┐     ┌──────────────┐                     │ 
 │  │   Streamlit  │────▶│   FastAPI    │                     │
 │  │   Frontend   │     │   Backend    │                     │
 │  └──────────────┘     └──────┬───────┘                     │
@@ -116,22 +116,22 @@ Automated_Quality_Control-Defect_Detection/
 ## Features
 
 ### Core Functionality
-- ✅ Binary classification (PASS/DEFECT) with confidence score
-- ✅ Multi-class defect localization with bounding boxes
-- ✅ Real-time inference support (webcam/video)
-- ✅ Grad-CAM explainability visualization
+-  Binary classification (PASS/DEFECT) with confidence score
+-  Multi-class defect localization with bounding boxes
+-  Real-time inference support (webcam/video)
+-  Grad-CAM explainability visualization
 
 ### User Interface
-- ✅ Image upload for batch inspection
-- ✅ Webcam capture for live inspection
-- ✅ Visual detection results with bounding boxes
-- ✅ Detection confidence and labels display
-- ✅ Inference time tracking
+-  Image upload for batch inspection
+-  Webcam capture for live inspection
+-  Visual detection results with bounding boxes
+-  Detection confidence and labels display
+-  Inference time tracking
 
 ### API
-- ✅ RESTful FastAPI endpoint
-- ✅ OpenAPI/Swagger documentation
-- ✅ JSON response with detections, status, and timing
+-  RESTful FastAPI endpoint
+-  OpenAPI/Swagger documentation
+-  JSON response with detections, status, and timing
 
 ---
 
