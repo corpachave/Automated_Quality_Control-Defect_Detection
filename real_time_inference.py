@@ -10,7 +10,7 @@ from ultralytics import YOLO #type: ignore
 CLASS_MODEL_PATH = "visionspec_qc_model.keras"
 DETECTION_MODEL_PATH = "runs/detect/pcb_yolov8n/weights/best.pt"
 IMAGE_SIZE = (224, 224)
-THRESHOLD = 0.5
+THRESHOLD = 0.7
 
 # LOAD MODELS
 
