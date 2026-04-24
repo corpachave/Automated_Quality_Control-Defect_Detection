@@ -7,4 +7,14 @@ raw_data/
 venv/
 .venv/
 
+# Cache
+__pycache__/
 
+# run files
+
+runs/detect/pcb_yolov8n/weights/last.pt
+
+# Models
+visionspec_qc_model.h5
+yolo26n.pt
+yolov8n.pt
